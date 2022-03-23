@@ -35,7 +35,7 @@ kubectl apply -f create-pvc.yaml
 
 
 reate-redis-deployment.yaml
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
