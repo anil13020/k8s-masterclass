@@ -1,0 +1,44 @@
+Install Istio in Minikube cluster:
+
+https://github.com/istio/istio/releases/tag/1.13.2
+https://istio.io/latest/docs/setup/getting-started/
+
+minikube start
+mkdir istio
+cd istio
+wget https://github.com/istio/istio/releases/download/1.13.2/istio-1.13.2-linux-amd64.tar.gz
+tar -xvzf istio-1.13.2-linux-amd64.tar.gz 
+pwd
+cd istio-1.13.2/
+pwd
+export PATH=$PATH:/root/istio/istio-1.13.2/bin
+echo $PATH
+istioctl
+kubectl get namespace
+kubectl get pods
+istioctl install 
+kubectl get pod -n istio-system
+
+Deploy a Microservices Application:
+
+cd ..
+nano kubernetes-manifests.yaml
+kubectl apply -f kubernetes-manifests.yaml
+kubectl get pods
+
+Configure automatic Envoy Proxy Injection:
+
+kubectl get ns default --show-labels
+kubectl label namespace default istio-injection=enabled 
+
+Install Istio Addons for Monitoring & data visualization:
+
+https://istio.io/latest/docs/ops/integrations/
+kubectl apply -f /root/istio/istio-1.13.2/samples/addons
+kubectl get all -n istio-system
+
+Kiali - Service Mesh Management for Istio:
+
+"app" Labels in Pods for Istio:
+
+https://github.com/vikas99341/microservices-demo
